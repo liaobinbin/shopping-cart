@@ -1,0 +1,33 @@
+@import "../../styles/global.less";
+.cart {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 1200px;
+  margin: 50px auto auto;
+
+  &-side {
+    display: grid;
+    justify-content: center;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
+  &-main {
+    display: block;
+    &-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-content: end;
+      padding: 0 15px;
+    }
+  }
+}
+@media only screen and (min-width: @tablet) {
+  .cart {
+    grid-template-columns: 1fr 4fr;
+
+    &-side {
+      align-content: baseline;
+    }
+  }
+}

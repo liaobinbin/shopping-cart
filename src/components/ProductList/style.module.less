@@ -1,0 +1,17 @@
+@import "../../styles/global.less";
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media only screen and (min-width: @tablet) {
+  .product-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (min-width: @desktop) {
+  .product-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

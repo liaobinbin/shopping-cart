@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,9 +14,18 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "baseUrl": "./",
+    "paths": {
+      "@": ["./src"],
+      "@components": ["./src/components"],
+      "@hooks": ["./src/hooks"],
+      "@api": ["./src/api"],
+      "@utils": ["./src/utils"],
+      "@pages": ["./src/pages"],
+      "@models": ["./src/models"]
+    },
+    "jsx": "react-jsx",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

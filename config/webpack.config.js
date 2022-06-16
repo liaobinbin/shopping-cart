@@ -16,6 +16,9 @@ const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const getCSSModuleLocalIdent = require("react-dev-utils/getCSSModuleLocalIdent");
 const ESLintPlugin = require("eslint-webpack-plugin");
+
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+
 const paths = require("./paths");
 const modules = require("./modules");
 const getClientEnvironment = require("./env");
@@ -186,6 +189,12 @@ module.exports = function (webpackEnv) {
         }
       );
     }
+    loaders.push({
+      loader: "style-resources-loader",
+      options: {
+        patterns: path.resolve(__dirname, "../src/styles/global.less"),
+      },
+    });
     return loaders;
   };
 
@@ -325,6 +334,9 @@ module.exports = function (webpackEnv) {
         ...(modules.webpackAliases || {}),
       },
       plugins: [
+        new TsconfigPathsPlugin({
+          extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+        }),
         // Prevents users from importing files from outside of src/ (or node_modules/).
         // This often causes confusion because we only process files within src/ with babel.
         // To fix this, we prevent you from importing files out of src/ -- if you'd like to,

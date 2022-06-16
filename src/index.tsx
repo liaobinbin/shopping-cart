@@ -1,8 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.less";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
+import "antd/dist/antd.less";
+import "./index.less";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
