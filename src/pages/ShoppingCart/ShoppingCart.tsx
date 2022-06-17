@@ -1,64 +1,17 @@
-import React from "react";
-import { Button } from "antd";
+import React, { Dispatch } from "react";
 import { ProductList, Filter, Loader, Cart } from "@components";
+import { useDispatch, useSelector } from "react-redux";
+import { store, RootState, productsSlice } from "@store";
 import style from "./style.module.less";
 
 export const ShoppingCart: React.FC = () => {
-  const [loading, setLoading] = React.useState<boolean>(false);
-  const products = [
-    {
-      availableSizes: ["X", "L", "XL", "XXL"],
-      currencyFormat: "$",
-      currencyId: "USD",
-      description: "14/15 s/nº",
-      id: 0,
-      installments: 9,
-      isFreeShipping: true,
-      price: 10.9,
-      sku: 8552515751438644,
-      style: "White T-shirt",
-      title: "Cropped Stay Groovy off white",
-    },
-    {
-      availableSizes: ["X", "L", "XL", "XXL"],
-      currencyFormat: "$",
-      currencyId: "USD",
-      description: "14/15 s/nº",
-      id: 0,
-      installments: 9,
-      isFreeShipping: true,
-      price: 10.9,
-      sku: 8552515751438644,
-      style: "White T-shirt",
-      title: "Cropped Stay Groovy off white",
-    },
-    {
-      availableSizes: ["X", "L", "XL", "XXL"],
-      currencyFormat: "$",
-      currencyId: "USD",
-      description: "14/15 s/nº",
-      id: 0,
-      installments: 9,
-      isFreeShipping: true,
-      price: 10.9,
-      sku: 8552515751438644,
-      style: "White T-shirt",
-      title: "Cropped Stay Groovy off white",
-    },
-    {
-      availableSizes: ["X", "L", "XL", "XXL"],
-      currencyFormat: "$",
-      currencyId: "USD",
-      description: "14/15 s/nº",
-      id: 0,
-      installments: 9,
-      isFreeShipping: true,
-      price: 10.9,
-      sku: 8552515751438644,
-      style: "White T-shirt",
-      title: "Cropped Stay Groovy off white",
-    },
-  ];
+  const { cart, product } = useSelector<RootState, RootState>((state) => state);
+  const { loading, products } = product;
+
+  React.useEffect(() => {
+    console.log(productsSlice.actions);
+  }, []);
+
   return (
     <>
       {loading && <Loader />}

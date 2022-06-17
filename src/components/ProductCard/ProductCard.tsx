@@ -67,7 +67,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </p>
         {installments && (
           <p className={style["product-price-discount"]}>
-            <span>{installments} x </span>
+            <span>or {installments} x </span>
             <b>
               {currencyFormat}
               {formatPrice(price / installments, currencyId)}
