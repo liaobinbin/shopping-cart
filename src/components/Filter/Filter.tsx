@@ -1,7 +1,7 @@
 import React from "react";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, } from 'react-redux'
 
-import { filterProducts, RootState, IProductsState, AppDispatch, productsSlice } from '@store'
+import { filterProducts, AppDispatch } from '@store'
 
 import { CheckBox } from "@components";
 import style from "./style.module.less";
