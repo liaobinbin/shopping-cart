@@ -1,12 +1,26 @@
 import React from "react";
+import { useDispatch, useSelector } from 'react-redux'
+
+import { filterProducts, RootState, IProductsState, AppDispatch, productsSlice } from '@store'
+
 import { CheckBox } from "@components";
 import style from "./style.module.less";
 
 export const availableSizes = ["XS", "S", "M", "ML", "L", "XL", "XXL"];
 
+
+const selectSizes = new Set<string>();
 export const Filter: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch()
+
   const toggleCheckbox = (label: string) => {
-    console.log(label);
+    if (selectSizes.has(label)) {
+      selectSizes.delete(label)
+    } else {
+      selectSizes.add(label)
+    }
+
+    dispatch(filterProducts(Array.from(selectSizes)))
   };
   return (
     <div className={style.filter}>

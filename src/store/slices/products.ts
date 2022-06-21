@@ -2,22 +2,23 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { IProduct } from "@models";
 import { getProducts } from "@api";
+import { store } from "@store";
 
 export type IProductsState = {
   loading: boolean;
-  filters: string[];
   products: IProduct[];
 };
 
-type IProductsReducer = {};
+type IProductsReducer = {
+};
 
-const fetchProducts = createAsyncThunk("fetch/products", async () => {
+export const fetchProducts = createAsyncThunk("fetch/products", async () => {
   const products = await getProducts();
 
   return products;
 });
 
-const filterProducts = createAsyncThunk(
+export const filterProducts = createAsyncThunk(
   "filter/products",
   async (filters: string[]) => {
     const products = await getProducts();
@@ -41,7 +42,6 @@ export const productsSlice = createSlice<IProductsState, IProductsReducer>({
   initialState: {
     loading: false,
     products: [],
-    filters: [],
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -62,10 +62,11 @@ export const productsSlice = createSlice<IProductsState, IProductsReducer>({
     builder.addCase(filterProducts.fulfilled, (state, action) => {
       state.loading = false;
       state.products = action.payload.products;
-      state.filters = action.payload.filters;
     });
     builder.addCase(filterProducts.rejected, (state) => {
       state.loading = false;
     });
   },
 });
+
+export type AppDispatch = typeof store.dispatch;

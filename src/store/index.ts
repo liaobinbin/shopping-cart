@@ -8,6 +8,7 @@ import { productsSlice } from "./slices/products";
 const persistConfig = {
   key: "root",
   storage,
+  whiteList: ['cart']
 };
 
 const rootReducer = combineReducers({

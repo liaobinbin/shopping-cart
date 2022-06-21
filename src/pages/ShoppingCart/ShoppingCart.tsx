@@ -1,15 +1,15 @@
 import React, { Dispatch } from "react";
 import { ProductList, Filter, Loader, Cart } from "@components";
 import { useDispatch, useSelector } from "react-redux";
-import { store, RootState, productsSlice } from "@store";
+import { RootState, fetchProducts, AppDispatch, IProductsState } from "@store";
 import style from "./style.module.less";
 
 export const ShoppingCart: React.FC = () => {
-  const { cart, product } = useSelector<RootState, RootState>((state) => state);
-  const { loading, products } = product;
+  const { products, loading } = useSelector<RootState, IProductsState>((state) => state.product);
+  const dispatch: AppDispatch = useDispatch()
 
   React.useEffect(() => {
-    console.log(productsSlice.actions);
+    dispatch(fetchProducts())
   }, []);
 
   return (
