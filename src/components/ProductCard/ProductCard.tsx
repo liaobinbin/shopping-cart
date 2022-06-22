@@ -10,12 +10,12 @@ export interface ProductCardProps {
   product: IProduct;
 }
 
-const getImgUrl = (sku: number, hover: boolean) => {
-  if (hover) {
-    return `./products/${sku}-2-product.webp`;
-  }
-  return `./products/${sku}-1-product.webp`;
-};
+// const getImgUrl = (sku: number, hover: boolean) => {
+//   if (hover) {
+//     return `./products/${sku}-2-product.webp`;
+//   }
+//   return `./products/${sku}-1-product.webp`;
+// };
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const {
@@ -52,8 +52,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {isFreeShipping && (
         <div className={style["product-stopper"]}>Free shipping</div>
       )}
+
       <img
-        src={getImgUrl(sku, hover)}
+        style={{display: hover ? 'block' : 'none'}}
+        src={`./products/${sku}-2-product.webp`}
+        className={style["product-image"]}
+        alt={title}
+      />
+
+      <img
+        style={{display: !hover ? 'block' : 'none'}}
+        src={`./products/${sku}-1-product.webp`}
         className={style["product-image"]}
         alt={title}
       />

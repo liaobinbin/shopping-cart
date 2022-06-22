@@ -10,7 +10,7 @@ export const ShoppingCart: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(fetchProducts())
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
