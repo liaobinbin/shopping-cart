@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { ICartProduct } from "@models";
-import { stat } from "fs";
 
 const updateQuantitySafely = (
   currentProduct: ICartProduct,

@@ -56,9 +56,14 @@ export const Cart: React.FC = () => {
             </div>
             <span className={style["cart-content-header__title"]}>Cart</span>
           </div>
-          ({
-            products.map(product => <CartProduct product={product} key={product.sku} ></CartProduct>)
-          })
+          <div className={style["cart-products"]}>
+            ({products.length ? products.map(product => <CartProduct product={product} key={product.sku} ></CartProduct>) : <p className={style["cart-products-empty"]}>
+              Add some products in the cart <br />
+              :)
+            </p>
+            })
+          </div>
+
           <div className={style["cart-content-footer"]}>
             <p className={style["cart-content-footer__title"]}>SUBTOTAL</p>
             <div className={style["cart-content-footer__price"]}>

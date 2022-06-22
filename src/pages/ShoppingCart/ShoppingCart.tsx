@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import React from "react";
 import { ProductList, Filter, Loader, Cart } from "@components";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, fetchProducts, AppDispatch, IProductsState } from "@store";
@@ -23,7 +23,9 @@ export const ShoppingCart: React.FC = () => {
           <div className={style["cart-main-header"]}>
             {products?.length} Product(s) found
           </div>
-          <ProductList list={products} />
+          {
+            products && <ProductList list={products} />
+          }
         </main>
         <Cart />
       </div>
