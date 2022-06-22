@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { ICartProduct } from "@models";
+import { stat } from "fs";
 
 const updateQuantitySafely = (
   currentProduct: ICartProduct,
@@ -56,11 +57,11 @@ const getCartTotal = (
 export type ICartState = {
   products: ICartProduct[];
   total: {
-    total?: number;
-    installments?: number;
-    totalPrice?: number;
-    currencyId?: string;
-    currencyFormat?: string;
+    total: number;
+    installments: number;
+    totalPrice: number;
+    currencyId: string;
+    currencyFormat: string;
   };
 };
 
@@ -75,13 +76,20 @@ type ICartReducer = {
     state: ICartState,
     action: { payload: ICartProduct }
   ) => void;
+  clearProducts: (state: ICartState) => void;
 };
 
 export const cartSlice = createSlice<ICartState, ICartReducer>({
   name: "cart",
   initialState: {
     products: [],
-    total: {},
+    total: {
+      total: 0,
+      installments: 0,
+      totalPrice: 0,
+      currencyFormat: '',
+      currencyId: ''
+    },
   },
   reducers: {
     addProduct: (state, action) => {
@@ -128,5 +136,9 @@ export const cartSlice = createSlice<ICartState, ICartReducer>({
       state.products = updatedProducts;
       state.total = getCartTotal(updatedProducts);
     },
+    clearProducts: (state) => {
+      state.products = []
+      state.total = getCartTotal([])
+    }
   },
 });

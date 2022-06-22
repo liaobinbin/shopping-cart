@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useDispatch } from 'react-redux'
+import { AppDispatch, cartSlice } from '@store'
 import { IProduct } from "@models";
 import { formatPrice } from "@utils";
 import style from "./style.module.less";
@@ -30,6 +32,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [hover, setHover] = React.useState<boolean>(false);
 
   const formattedPrice = formatPrice(price, currencyId);
+
+  const dispatch: AppDispatch = useDispatch()
+
+  const addToCart = () => {
+    dispatch(cartSlice.actions.addProduct({ ...product, quantity: 1 }))
+  }
 
   return (
     <div
@@ -76,12 +84,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         )}
       </div>
       <button
+        onClick={addToCart}
         className={
           hover
             ? [
-                style["product-buy-button"],
-                style["product-buy-button__hover"],
-              ].join(" ")
+              style["product-buy-button"],
+              style["product-buy-button__hover"],
+            ].join(" ")
             : style["product-buy-button"]
         }
       >

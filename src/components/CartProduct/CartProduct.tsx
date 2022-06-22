@@ -1,5 +1,9 @@
 import React from "react";
+import { useDispatch } from 'react-redux'
 
+
+
+import { cartSlice, AppDispatch } from '@store'
 import { ICartProduct } from "@models";
 import { formatPrice } from "@utils";
 import style from "./style.module.less";
@@ -13,6 +17,7 @@ const getImgUrl = (sku: number) => {
 };
 
 export const CartProduct: React.FC<CartProductProps> = ({ product }) => {
+  const dispatch: AppDispatch = useDispatch()
   const {
     sku,
     title,
@@ -24,9 +29,12 @@ export const CartProduct: React.FC<CartProductProps> = ({ product }) => {
     quantity,
   } = product;
 
+
+
   return (
     <div className={style.product}>
       <button
+        onClick={() => { dispatch(cartSlice.actions.removeProduct(product)) }}
         className={style["product-delete"]}
         title="remove product from cart"
       ></button>
@@ -46,12 +54,17 @@ export const CartProduct: React.FC<CartProductProps> = ({ product }) => {
         <p>{`${currencyFormat}  ${formatPrice(price, currencyId)}`}</p>
         <div>
           <button
+            onClick={() => {
+              dispatch(cartSlice.actions.decreaseProductQuantity(product))
+            }}
             className={style["product-price-change"]}
             disabled={quantity === 1 ? true : false}
           >
             -
           </button>
-          <button className={style["product-price-change"]}>+</button>
+          <button onClick={() => {
+            dispatch(cartSlice.actions.increaseProductQuantity(product))
+          }} className={style["product-price-change"]}>+</button>
         </div>
       </div>
     </div>
