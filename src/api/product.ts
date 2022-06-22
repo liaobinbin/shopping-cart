@@ -9,7 +9,8 @@ export const getProducts = async () => {
     const res = await fetch(
       "https://liaobinbin.github.io/shopping-cart/json/products.json"
     );
-    response = await res.json();
+    const body = await res.json()
+    response = body.data;
   } else {
     response = require("../mock/json/products.json").data
   };
