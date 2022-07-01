@@ -9,8 +9,7 @@ export type IProductsState = {
   products: IProduct[];
 };
 
-type IProductsReducer = {
-};
+type IProductsReducer = {};
 
 export const fetchProducts = createAsyncThunk("fetch/products", async () => {
   const products = await getProducts();

@@ -1,7 +1,7 @@
 import React from "react";
 
-import { useDispatch } from 'react-redux'
-import { AppDispatch, cartSlice } from '@store'
+import { useDispatch } from "react-redux";
+import { AppDispatch, cartSlice } from "@store";
 import { IProduct } from "@models";
 import { formatPrice } from "@utils";
 import style from "./style.module.less";
@@ -33,11 +33,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const formattedPrice = formatPrice(price, currencyId);
 
-  const dispatch: AppDispatch = useDispatch()
+  const dispatch: AppDispatch = useDispatch();
 
   const addToCart = () => {
-    dispatch(cartSlice.actions.addProduct({ ...product, quantity: 1 }))
-  }
+    dispatch(cartSlice.actions.addProduct({ ...product, quantity: 1 }));
+  };
 
   return (
     <div
@@ -54,14 +54,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       )}
 
       <img
-        style={{display: hover ? 'block' : 'none'}}
+        style={{ display: hover ? "block" : "none" }}
         src={`./products/${sku}-2-product.webp`}
         className={style["product-image"]}
         alt={title}
       />
 
       <img
-        style={{display: !hover ? 'block' : 'none'}}
+        style={{ display: !hover ? "block" : "none" }}
         src={`./products/${sku}-1-product.webp`}
         className={style["product-image"]}
         alt={title}
@@ -82,7 +82,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <b>{formattedPrice.substring(0, formattedPrice.length - 3)}</b>
           <span>{formattedPrice.substring(formattedPrice.length - 3)}</span>
         </p>
-        {installments && (
+        {!!installments && (
           <p className={style["product-price-discount"]}>
             <span>or {installments} x </span>
             <b>
@@ -97,9 +97,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         className={
           hover
             ? [
-              style["product-buy-button"],
-              style["product-buy-button__hover"],
-            ].join(" ")
+                style["product-buy-button"],
+                style["product-buy-button__hover"],
+              ].join(" ")
             : style["product-buy-button"]
         }
       >
