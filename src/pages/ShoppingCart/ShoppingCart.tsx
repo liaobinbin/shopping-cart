@@ -58,8 +58,8 @@ export const ShoppingCart: React.FC = () => {
                 placeholder="Order By"
                 onChange={handleOrderChange}
               >
-                <Option value="1">High to Low</Option>
-                <Option value="2">Low to High</Option>
+                <Option value="1">Low to High</Option>
+                <Option value="2">High to Low</Option>
               </Select>
             </div>
           </div>
